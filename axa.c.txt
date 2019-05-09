@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+#include<stdlib.h>
+#include<libm.a>
+
+int main (){
+        int N;
+        double error,nth,x;
+        printf("Inserte num de iteraciones ");
+        scanf("%d",&N);
+        printf("Inserte error  ");
+        scanf("%lf",&error);
+         printf("Inserte Numero para sacar raiz ");
+        scanf("%lf",&x);
+        printf("Inserte Numero raiz ");
+        scanf("%lf",&nth);
+        double  rootbi= rootBi(nth,x,error,N);
+        return 0;
+}
+
+double rootBi(double nth, double x,double error,int iteration){
+        double a=0;
+        double b=rand()*(x+1);
+        double c = 0;
+        double fa = 0;
+        double fb = 0;
+        double fc = 0;
+        int N = 1;
+     do {
+             double sign(double num) {
+                double resultado = pow(num,nth) - x;
+                return resultado;
+                }
+         c = (a + b) / 2;
+         printf("iteracion %i : es %f\n",N,c);
+         fa = sign(a);
+         fb = sign(b);
+         fc = sign(c);
+
+         if (sign(fc) == 0|| b-a/2<error) {
+
+         printf("%f\n",c);
+        N=N+1;
+         
+          } else {
+                if (sign(b)==sign(a)){
+                a=b;
+                }
+                else{c=b;
+                }
+             }
+        
+      } while (N <= iteration && fabs(fc) >= error);
+    return c;
+}
